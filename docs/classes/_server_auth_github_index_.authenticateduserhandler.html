@@ -1,0 +1,448 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AuthenticatedUserHandler | hugo-express</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">hugo-express</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_server_auth_github_index_.html">&quot;server/auth/github/index&quot;</a>
+				</li>
+				<li>
+					<a href="_server_auth_github_index_.authenticateduserhandler.html">AuthenticatedUserHandler</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="container">
+	<div class="row container container-main">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul>
+					<ul class="before-current">
+					</ul>
+					<ul class="current">
+						<li class="current tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
+							<a href="_server_auth_github_index_.authenticateduserhandler.html" class="tsd-kind-icon">Authenticated<wbr>User<wbr>Handler</a>
+							<ul>
+								<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#constructor" class="tsd-kind-icon">constructor</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#jsonresponse" class="tsd-kind-icon">jsonresponse</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#ready" class="tsd-kind-icon">ready</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#gh_api_client" class="tsd-kind-icon">gh_<wbr>api_<wbr>client</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#errorhandlergetauhtenticateduserresponsedata" class="tsd-kind-icon">error<wbr>Handler<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#getreceivedresponse" class="tsd-kind-icon">get<wbr>Received<wbr>Response</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#handlegetauhtenticateduserresponsedata" class="tsd-kind-icon">handle<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#hasreceivedresponse" class="tsd-kind-icon">has<wbr>Received<wbr>Response</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#isauthenticateduseringithuborg" class="tsd-kind-icon">is<wbr>Authenticated<wbr>User<wbr>InGithub<wbr>Org</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+									<a href="_server_auth_github_index_.authenticateduserhandler.html#verify" class="tsd-kind-icon">verify</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="after-current">
+						<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+							<a href="../modules/_server_auth_github_index_.html#authenticateduserhandler-1" class="tsd-kind-icon">authenticated<wbr>User<wbr>Handler</a>
+						</li>
+						<li class=" tsd-kind-object-literal tsd-parent-kind-module tsd-is-not-exported">
+							<a href="../modules/_server_auth_github_index_.html#passport_github2_option" class="tsd-kind-icon">passport_<wbr>github2_<wbr>option</a>
+						</li>
+					</ul>
+				</ul>
+				<ul>
+					<li>📑 Index</li>
+					<li><br></li>
+					<li class=" ">
+						<a href="../globals.html">Globals</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_lib_errors_.html">&quot;lib/errors&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_server_.html">&quot;server/<wbr>Server&quot;</a>
+						</li>                        <li class="current tsd-kind-module">
+						<a href="../modules/_server_auth_github_index_.html">&quot;server/auth/github/index&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_lib_github_api_index_.html">&quot;server/lib/github/api/index&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_permissions_pokus_github_index_.html">&quot;server/permissions/pokus/github/index&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_routers_circlecirouter_.html">&quot;server/routers/<wbr>CircleCIRouter&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_routers_circleci_whoamiirouter_.html">&quot;server/routers/circleci/<wbr>Who<wbr>AmiIRouter&quot;</a>
+				</li>                </ul>
+			</nav>
+		</div>
+		<div class="col-9 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">AuthenticatedUserHandler</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Constructors</h3>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#constructor" class="tsd-kind-icon">constructor</a>
+									</li>
+								</ul>
+							</div>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-not-exported">
+							<h3>Properties</h3>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#jsonresponse" class="tsd-kind-icon">jsonresponse</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#ready" class="tsd-kind-icon">ready</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#gh_api_client" class="tsd-kind-icon">gh_<wbr>api_<wbr>client</a>
+									</li>
+								</ul>
+							</div>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Methods</h3>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#errorhandlergetauhtenticateduserresponsedata" class="tsd-kind-icon">error<wbr>Handler<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#getreceivedresponse" class="tsd-kind-icon">get<wbr>Received<wbr>Response</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#handlegetauhtenticateduserresponsedata" class="tsd-kind-icon">handle<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#hasreceivedresponse" class="tsd-kind-icon">has<wbr>Received<wbr>Response</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#isauthenticateduseringithuborg" class="tsd-kind-icon">is<wbr>Authenticated<wbr>User<wbr>InGithub<wbr>Org</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+										<a href="_server_auth_github_index_.authenticateduserhandler.html#verify" class="tsd-kind-icon">verify</a>
+									</li>
+								</ul>
+							</div>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported tsd-descriptions">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Authenticated<wbr>User<wbr>Handler<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_server_auth_github_index_.authenticateduserhandler.html" class="tsd-signature-type">AuthenticatedUserHandler</a></li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <a href="_server_auth_github_index_.authenticateduserhandler.html" class="tsd-signature-type">AuthenticatedUserHandler</a></h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:13</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-not-exported">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported tsd-descriptions">
+					<a name="jsonresponse" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> jsonresponse</h3>
+					<div class="tsd-signature tsd-kind-icon">jsonresponse<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:11</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported tsd-descriptions">
+					<a name="ready" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> ready</h3>
+					<div class="tsd-signature tsd-kind-icon">ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:12</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static tsd-is-not-exported tsd-descriptions">
+					<a name="gh_api_client" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> gh_<wbr>api_<wbr>client</h3>
+					<div class="tsd-signature tsd-kind-icon">gh_api_client<span class="tsd-signature-symbol">:</span> <a href="_server_lib_github_api_index_.githubapiclient.html" class="tsd-signature-type">GithubApiClient</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:13</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported tsd-descriptions">
+					<a name="errorhandlergetauhtenticateduserresponsedata" class="tsd-anchor"></a>
+					<h3>error<wbr>Handler<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">error<wbr>Handler<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<h4 class="tsd-parameters-title">Parameters</h4>
+					<ul class="tsd-parameters">
+						<li>
+							<span class="name">error</span>: <span class="tsd-signature-type">any</span>
+						</li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span>    </h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:29</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported tsd-descriptions">
+					<a name="getreceivedresponse" class="tsd-anchor"></a>
+					<h3>get<wbr>Received<wbr>Response</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Received<wbr>Response<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span>    </h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:26</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported tsd-descriptions">
+					<a name="handlegetauhtenticateduserresponsedata" class="tsd-anchor"></a>
+					<h3>handle<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Get<wbr>Auhtenticated<wbr>User<wbr>Response<wbr>Data<span class="tsd-signature-symbol">(</span>githubApiJsonResponse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<h4 class="tsd-parameters-title">Parameters</h4>
+					<ul class="tsd-parameters">
+						<li>
+							<span class="name">githubApiJsonResponse</span>: <span class="tsd-signature-type">any</span>
+						</li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span>    </h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:47</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported tsd-descriptions">
+					<a name="hasreceivedresponse" class="tsd-anchor"></a>
+					<h3>has<wbr>Received<wbr>Response</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Received<wbr>Response<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>    </h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:23</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported tsd-descriptions">
+					<a name="isauthenticateduseringithuborg" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Authenticated<wbr>User<wbr>InGithub<wbr>Org</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Authenticated<wbr>User<wbr>InGithub<wbr>Org<span class="tsd-signature-symbol">(</span>accessToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<h4 class="tsd-parameters-title">Parameters</h4>
+					<ul class="tsd-parameters">
+						<li>
+							<span class="name">accessToken</span>: <span class="tsd-signature-type">string</span>
+						</li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span>    </h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:73</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported tsd-descriptions">
+					<a name="verify" class="tsd-anchor"></a>
+					<h3>verify</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">verify<span class="tsd-signature-symbol">(</span>accessToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, refreshToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, profile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Profile</span>, done<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OAuth2Strategy.VerifyCallback</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<h4 class="tsd-parameters-title">Parameters</h4>
+					<ul class="tsd-parameters">
+						<li>
+							<span class="name">accessToken</span>: <span class="tsd-signature-type">string</span>
+						</li>
+						<li>
+							<span class="name">refreshToken</span>: <span class="tsd-signature-type">string</span>
+						</li>
+						<li>
+							<span class="name">profile</span>: <span class="tsd-signature-type">Profile</span>
+						</li>
+						<li>
+							<span class="name">done</span>: <span class="tsd-signature-type">OAuth2Strategy.VerifyCallback</span>
+						</li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span>    </h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/server/auth/github/index.ts:98</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<footer class="with-border-bottom">
+				<div class="tsd-legend-group">
+					<ul class="tsd-legend">
+						<li class="tsd-is-inherited"><span class="tsd-kind-icon">Inherited</span></li>
+						<li class="tsd-is-protected"><span class="tsd-kind-icon">Protected</span></li>
+						<li class="tsd-is-private"><span class="tsd-kind-icon">Private</span></li>
+						<li class="tsd-is-static"><span class="tsd-kind-icon">Static</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+						<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object</span></li>
+						<li class="tsd-kind-property"><span class="tsd-kind-icon">Property</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+						<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+						<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type</span></li>
+						<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+						<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enum</span></li>
+						<li class="tsd-kind-constructor"><span class="tsd-kind-icon">Constructor</span></li>
+						<li class="tsd-kind-accessor"><span class="tsd-kind-icon">Getter/Setter</span></li>
+					</ul>
+				</div>
+			</footer>
+			<div>Made with ❤️ by <a href="https://github.com/pirix-gh/eledoc" target="_blank">pirix-gh</a>. Documentation generated by <a href="http://typedoc.org/" target="_blank">TypeDoc.</a></div>
+		</div>
+	</div>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "name": "hugo-express",
+  "version": "0.0.1",
+  "description": "A hugo / nodejs hybrid webserver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'no tests yet'",
+    "dev": "npm run build && ./node_modules/ts-node/dist/bin.js ./src/index.ts",
+    "start": "node ./dist/index.js",
+    "doc": "./node_modules/typedoc/bin/typedoc --out docs/ ./src --theme node_modules/eledoc/bin/default/",
+    "compile": "tsc ",
+    "init": "./.npm.scripts/hugo-init.sh",
+    "build": "npm run compile && npm run test && npm run doc && npm run oci",
+    "server": "npm run build && npm start",
+    "oci": "docker version && docker ps -a && docker images"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pokusio/hugo-cheatsheet.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "hugo",
+    "express"
+  ],
+  "author": "Jean-Baptiste Lasselle <jean-baptiste.lasselle@gmail.com>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "https://github.com/pokusio/hugo-cheatsheet",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "axios-cancel": "^0.2.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "express-partials": "^0.3.0",
+    "express-session": "^1.17.1",
+    "method-override": "^3.0.0",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
+    "rxjs": "^6.6.3",
+    "rxjs-compat": "^6.6.3",
+    "yargs": "^16.1.1"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/axios-cancel": "^0.2.0",
+    "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.8",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.9",
+    "@types/express-partials": "0.0.32",
+    "@types/express-session": "^1.17.2",
+    "@types/method-override": "0.0.31",
+    "@types/node": "^14.14.7",
+    "@types/passport": "^1.0.4",
+    "@types/passport-github2": "^1.2.4",
+    "@types/yargs": "^15.0.9",
+    "eledoc": "^0.2.1",
+    "ts-node": "^9.0.0",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.5",
+    "typescript-collections": "^1.3.3"
+  }
+}
