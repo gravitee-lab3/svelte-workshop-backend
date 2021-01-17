@@ -5,3 +5,5 @@ dist/
 # public folder contains an explanatory README.md
 public/README.md
 public/*
+# secrets
+./.secrets.json

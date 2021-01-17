@@ -10,7 +10,7 @@ const corsMiddleware = cors();
 const server = new GhallagherServer({
   fqdn: `${process.env.GHALLAGHER_HOST}`,
   port: Number(process.env.GHALLAGHER_PORT),
-  middleWares: [corsMiddleware],
+  middleWares: [corsMiddleware], // will enable preflight requests options
   controllers: [
     {
       name: "Circle CI Router Controller",
