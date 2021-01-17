@@ -7,3 +7,5 @@ public/README.md
 public/*
 # secrets
 ./.secrets.json
+.secrets.json
+.secrets.*.json

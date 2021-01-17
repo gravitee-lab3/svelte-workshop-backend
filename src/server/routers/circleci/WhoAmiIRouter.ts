@@ -46,7 +46,7 @@ whoamIRouter.get(`${path}`, (request, response) => {
        }
      };
      JSONErrorDataForResponse = {
-       message: `[{[Ghallagher[/me] Router]} - triggering Circle CI Build failed!!!]`,
+       message: `[{[Ghallagher[/me] Router]} - Circle CI API Call failed!!!]`,
        cci_message: catched_error.axios_error.response.data.message,
        cci_status_code: catched_error.cci_http_response_status.status_code,
        cci_status_text: catched_error.cci_http_response_status.status_text
