@@ -1,8 +1,11 @@
-# Trigger a Circle CI Endpoint Operational at [/backend/circleci/trigger-pipeline]
+# Trigger and List Circle CI Pipelines Endpoints Operational
 
 In the previous release, a first Endpoint was implemented, allowing to askthe Circle CI API v2 "Who am I?".
 
-In this version, a second endpoint is implemented, allowing to call the Circle CI API, and trigger the execution of any Circle CI Pipeline, from a browser, just as if you were executing the folowing `curl` :
+In this version, three more endpoints are implemented, allowing to call the Circle CI API, and :
+* trigger the execution of any Circle CI Pipeline,
+* List all pipelines
+* List all Pipelines ofagiven project (of a given `git` repo)
 
 * Launch a test release in the gravitee-lab Github Org, on branch `4.4.x` of the release repo :
 
