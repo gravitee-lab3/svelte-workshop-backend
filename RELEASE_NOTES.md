@@ -107,13 +107,15 @@ export PAGE_TOKEN="AARLwwV7vuFl0VMwl20IVdr6uGOEtLSNJrEWPjBYNC_oeHRntXh8SD2KLvXBj
 
 export JSON_PAYLOAD="{
     \"github_org\": \"${ORG_NAME}\",
+    \"mine\": ${MINE_ONLY}
+}"
+
+export JSON_PAYLOAD="{
+    \"github_org\": \"${ORG_NAME}\",
     \"mine\": ${MINE_ONLY},
     \"page_token\": \"${PAGE_TOKEN}\"
 }"
-export JSON_PAYLOAD="{
-    \"github_org\": \"${ORG_NAME}\",
-    \"mine\": ${MINE_ONLY}
-}"
+
 
 curl -iv -X GET -d "${JSON_PAYLOAD}" http://localhost:5000/backend/circleci/get-pipelines -H 'Content-Type: application/json' -H 'Accept: application/json' | tail -n 1 | jq .
 
@@ -148,12 +150,17 @@ curl -iv -X GET "https://circleci.com/api/v2/pipeline?${QUERY_PARAMETERS}" -H 'C
 
 ```bash
 export ORG_NAME="gravitee-lab"
-export MINE_ONLY=false
-export PAGE_TOKEN="AARLwwV7vuFl0VMwl20IVdr6uGOEtLSNJrEWPjBYNC_oeHRntXh8SD2KLvXBj9cv3V5a_zKczdNZcTcRNM1_Ao2gR5hVu802JPFw7yIewjAVZzUELxZ683hcYmmhabpeHcf_HkIGGljg8lIAV9Ajjl9xUBuS6slRlqeS93WlRef7T0TyBnYgs6I"
+export ORG_NAME="gravitee-lab"
+export REPO_NAME="release"
+export BRANCH="3.1.x"
+export PAGE_TOKEN="AARLwwWVKpqqyh-Glr5XOth49Uun4w3xcxOuGfR85-DA5eh_a2OBfDqpf_fxwubihhRJ1PM7xrtizzlhdr3hKahwRb7mSUC-aZxo_hcKc-9zWf0nwSMz6xobLd2X-be4v044cTSXDwem"
 
 export JSON_PAYLOAD="{
     \"github_org\": \"${ORG_NAME}\",
-    \"mine\": ${MINE_ONLY},
+    \"git_repo\": {
+      \"name\": \"${REPO_NAME}\",
+      \"branch\": \"${BRANCH}\"
+    },
     \"page_token\": \"${PAGE_TOKEN}\"
 }"
 
@@ -175,9 +182,11 @@ SECRETHUB_REPO=cicd
 export HUMAN_NAME=jblasselle
 export CCI_TOKEN=$(secrethub read "${SECRETHUB_ORG}/${SECRETHUB_REPO}/humans/${HUMAN_NAME}/circleci/token")
 
-export ORG_NAME=gravitee-lab
-export MINE_ONLY=false
-export PAGE_TOKEN="AARLwwV7vuFl0VMwl20IVdr6uGOEtLSNJrEWPjBYNC_oeHRntXh8SD2KLvXBj9cv3V5a_zKczdNZcTcRNM1_Ao2gR5hVu802JPFw7yIewjAVZzUELxZ683hcYmmhabpeHcf_HkIGGljg8lIAV9Ajjl9xUBuS6slRlqeS93WlRef7T0TyBnYgs6I"
-export QUERY_PARAMETERS="org-slug=gh/${ORG_NAME}&mine=${MINE_ONLY}&page-token=${PAGE_TOKEN}"
-curl -iv -X GET "https://circleci.com/api/v2/pipeline?${QUERY_PARAMETERS}" -H 'Content-Type: application/json' -H 'Accept: application/json' -H "Circle-Token: ${CCI_TOKEN}" | tail -n 1 | jq .
+export ORG_NAME="gravitee-lab"
+export REPO_NAME="release"
+export BRANCH="3.1.x"
+export PAGE_TOKEN="AARLwwWVKpqqyh-Glr5XOth49Uun4w3xcxOuGfR85-DA5eh_a2OBfDqpf_fxwubihhRJ1PM7xrtizzlhdr3hKahwRb7mSUC-aZxo_hcKc-9zWf0nwSMz6xobLd2X-be4v044cTSXDwem"
+export QUERY_PARAMETERS="branch=${BRANCH}"
+export QUERY_PARAMETERS="branch=${BRANCH}&page-token=${PAGE_TOKEN}"
+curl -iv -X GET "https://circleci.com/api/v2/project/gh/${ORG_NAME}/${REPO_NAME}/pipeline?${QUERY_PARAMETERS}" -H 'Content-Type: application/json' -H 'Accept: application/json' -H "Circle-Token: ${CCI_TOKEN}" | tail -n 1 | jq .
 ```

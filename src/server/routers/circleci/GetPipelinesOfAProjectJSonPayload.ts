@@ -33,16 +33,12 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 export JSON_PAYLOAD="{
     \"github_org\": \"${ORG_NAME}\",
     \"git_repo\": {
-      \"name\": \"${REPO_NAME}\",
-      \"branch\": \"${BRANCH}\"
+      \"name\": ${REPO_NAME},
+      \"branch\": ${BRANCH}
     },
-    \"parameters\":
-
-    {
-        \"gio_action\": \"release\"
-    }
-
+    \"page_token\": \"${PAGE_TOKEN}\"
 }"
+
 */
 export interface GetPipelinesOfAProjectJSonPayload {
   github_org: string,

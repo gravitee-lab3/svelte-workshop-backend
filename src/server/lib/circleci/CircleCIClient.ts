@@ -186,7 +186,8 @@ export class CircleCIClient {
 
     }
     /**
-     * List allpieplines for all github repos
+     * List all pipelines for all github repos
+     * getPipelinesOfAProject(receivedJSON.github_org, receivedJSON.git_repo.name, receivedJSON.git_repo.branch, receivedJSON.page_token)
      **/
     getPipelines(github_org: string, mine?: boolean, page_token?: string): any/*Observable<any> or Observable<AxiosResponse<any>>*/ {
 
@@ -238,6 +239,88 @@ export class CircleCIClient {
                 circleci_response_data: response.data
               };
               emitted.org_slug = `gh/${github_org}`; // won't hurt, will it ?
+              emitted.cci_http_response_status = {
+                status_code: response.status,
+                status_text: response.statusText
+              }; // won't hurt, will it ?
+              observer.next( emitted );
+              observer.complete();
+          } )
+          .catch( ( error ) => {
+              console.log("Circle CI HTTP Error JSON Response is : ");
+              /// console.log(JSON.stringify(error.response));
+              console.log(error.response);
+              let emittedError = {
+                axios_error: error,
+                cci_http_response_status : {
+                  status_code: error.response.status,
+                  status_text: error.response.statusText
+                }
+              }; // won't hurt, will it ?
+              observer.error( emittedError );
+          } );
+
+      } );
+      return observableRequest;
+
+    }
+
+    /**
+     * List all pipelines for all github repos
+     * getPipelinesOfAProject(receivedJSON.github_org, receivedJSON.git_repo.name, receivedJSON.git_repo.branch, receivedJSON.page_token)
+     **/
+    getPipelinesOfAProject(github_org: string, repo_name: string, branch?: string, page_token?: string): any/*Observable<any> or Observable<AxiosResponse<any>>*/ {
+
+      let observableRequest: any = rxjs.Observable.create( ( observer: any ) => {
+
+          // curl -X GET
+          // export QUERY_PARAMETERS="org-slug=gh/${ORG_NAME}&mine=${MINE_ONLY}&page-token=${PAGE_TOKEN}"
+          // curl -iv -X GET "https://circleci.com/api/v2/pipeline?${QUERY_PARAMETERS}" -H 'Content-Type: application/json' -H 'Accept: application/json' -H "Circle-Token: ${CCI_TOKEN}" | tail -n 1 | jq .
+          let queryParams: URLSearchParams = new URLSearchParams([]);
+          if (branch && page_token) {
+            if (branch === "") { // then branch was set to an empty string by router, because it did not receive any branch in JSON payload request
+              queryParams = new URLSearchParams([
+                ['page-token', `${page_token}`]
+              ]);
+            } else {
+              queryParams = new URLSearchParams([
+                ['branch', `${branch}`],
+                ['page-token', `${page_token}`]
+              ]);
+            }
+          } else if (page_token) {
+            queryParams = new URLSearchParams([
+              ['page-token', `${page_token}`]
+            ]);
+          } else if (branch){
+            queryParams = new URLSearchParams([
+              ['branch', `${branch}`]
+            ]);
+          } else {
+            queryParams = new URLSearchParams([]);
+          }
+          let config = {
+            headers: {
+              "Circle-Token": this.secrets.circleci.auth.token,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            },
+            params: queryParams
+          };
+
+          console.info("curl -X GET -H 'Content-Type: application/json'" + " -H 'Accept: application/json'" + " -H 'Circle-Token: " + `${this.secrets.circleci.auth.token}` + `' https://circleci.com/api/v2/pipeline?${queryParams.toString()}`);
+
+          /// axios.post( 'https://circleci.com/api/v2/me', jsonPayloadExample, config ).then(....)
+          axios.get( `https://circleci.com/api/v2/project/gh/${github_org}/${repo_name}/pipeline`, config)
+          .then( ( response ) => {
+              // let emitted = response.data;
+              let emitted: any = {
+                circleci_response_data: response.data
+              };
+              emitted.project_slug = `gh/${github_org}/${repo_name}`; // won't hurt, will it ?
+              if (branch){
+                emitted.branch = `${branch}`; // won't hurt, will it ?
+              }
               emitted.cci_http_response_status = {
                 status_code: response.status,
                 status_text: response.statusText
