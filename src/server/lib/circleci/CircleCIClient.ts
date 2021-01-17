@@ -505,25 +505,23 @@ export class CircleCIClient {
                 "Content-Type": "application/json"
               }
             };
-            // curl -X POST
 
             console.info("curl -X GET -H 'Content-Type: application/json'" + " -H 'Accept: application/json'" + " -H 'Circle-Token: " + `${this.secrets.circleci.auth.token}` + "' https://circleci.com/api/v2/me");
 
-            /// axios.post( 'https://circleci.com/api/v2/me', jsonPayloadExample, config ).then(....)
             axios.get( "https://circleci.com/api/v2/me", config )
             .then( ( response ) => {
                 let emitted = response.data;
                 emitted.cci_http_response_status = {
                   status_code: response.status,
                   status_text: response.statusText
-                }; // won't hurt, will it ?
+                };
+
                 observer.next( emitted );
                 observer.complete();
             } )
             .catch( ( error ) => {
-                console.log("Circle CI HTTP Error JSON Response is : ");
-                /// console.log(JSON.stringify(error.response));
-                console.log(error.response);
+                /// console.log("Circle CI HTTP Error JSON Response is : ");
+                /// console.log(error.response);
                 let emittedError: any = {
                   axios_error: error,
                   cci_http_response_status : {
@@ -550,7 +548,7 @@ export class CircleCIClient {
 /**
  * We need this type, because the CircleCI API JSON Response about Jobs Execution State does
  * not include enough information to retrieve the workflow execution,toxhich a JobExecution belongs to.
- * Now the Observable Stream emiting CircleCI API JSON Response about Jobs Execution, willalso mention workflow_guid
+ * Now the Observable Stream emiting CircleCI API JSON Response about Jobs Execution, will also mention workflow_guid
  **/
 export interface WorkflowJobsData {
   cci_json_response: any,
@@ -561,7 +559,7 @@ export interface WorkflowJobsData {
  * we need this type, because we don't want to be doomed to inspect the CircleCI API JSON Response  about Workflows Execution State
  * to retrieve the inspected Workflows parent pipeline GUID
  * not include enough information to retrieve the workflow execution,toxhich a JobExecution belongs to.
- * Now the Observable Stream emiting CircleCI API JSON Response about Jobs Execution, willalso mention workflow_guid
+ * Now the Observable Stream emiting CircleCI API JSON Response about Jobs Execution, will also mention workflow_guid
  **/
 export interface WorkflowsData {
   cci_json_response: any,
