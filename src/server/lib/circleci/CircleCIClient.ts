@@ -155,7 +155,10 @@ export class CircleCIClient {
           /// axios.post( 'https://circleci.com/api/v2/me', jsonPayloadExample, config ).then(....)
           axios.post( "https://circleci.com/api/v2/project/gh/" + `${org_name}` + "/" + `${repo_name}` + "/pipeline", jsonPayload, config )
           .then( ( response ) => {
-              let emitted = response.data;
+              // let emitted = response.data;
+              let emitted: any = {
+                circleci_response_data: response.data
+              };
               emitted.project_slug = `gh/${org_name}/${repo_name}`; // won't hurt, will it ?
               emitted.cci_http_response_status = {
                 status_code: response.status,
@@ -181,44 +184,167 @@ export class CircleCIClient {
       } );
       return observableRequest;
 
-/*
-      let requestConfig = {
-        headers: {
-          "Circle-Token": this.secrets.circleci.auth.token,
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }
-      };
-      let jsonPayload: any = pipelineParameters;
-      const cci_rest_endpoint = "https://circleci.com/api/v2/project/gh/";
-      const source = rxjs.from(axios.post( "https://circleci.com/api/v2/project/gh/" + `${org_name}` + "/" + `${repo_name}` + "/pipeline", jsonPayload, requestConfig )).pipe(
-      tap(val => console.log(`fetching ${cci_rest_endpoint} which you won't see `)),)
-      const response$ = source.pipe(
-        map(axiosResponse => {
-          if (!(axiosResponse.status == 200 || axiosResponse.status == 201 || axiosResponse.status == 203)) {
-            //error will be picked up by retryWhen
-            throw axiosResponse;
-          }
-          return axiosResponse; /// return value  HTTP Response Code si 200
-        }),
-        retryWhen(errors =>
-          errors.pipe(
-            //log error message
-            tap(axiosResponse => {
-              console.log(`Error occured, trying to fetch [${cci_rest_endpoint}], HTTP Response is : `);
-              console.log(`Error occured, trying to fetch [${JSON.stringify(axiosResponse.data)}], now retrying`);
-              console.log(`Error occured, trying to fetch [${cci_rest_endpoint}], now retrying`);
-            }),
-            //restart in 5 seconds
-            delay(3000), /// wait 3 seconds before retrying
-            /// delayWhen(val => timer(val * 1000)),
-            /// delayWhen(val => rxjs.timer(7 * 1000)), /// wait 7 seconds before retrying
-            take(1) // we only need ONE successful HTTP call, to trigger a pipeline, and after that, if ever Circle CI API v2 gets buggy, we ignore it.
-          )
-        )
-      );
+    }
+    /**
+     * List all pipelines for all github repos
+     * getPipelinesOfAProject(receivedJSON.github_org, receivedJSON.git_repo.name, receivedJSON.git_repo.branch, receivedJSON.page_token)
+     **/
+    getPipelines(github_org: string, mine?: boolean, page_token?: string): any/*Observable<any> or Observable<AxiosResponse<any>>*/ {
 
-      return response$;*/
+      let observableRequest: any = rxjs.Observable.create( ( observer: any ) => {
+
+          // curl -X GET
+          // export QUERY_PARAMETERS="org-slug=gh/${ORG_NAME}&mine=${MINE_ONLY}&page-token=${PAGE_TOKEN}"
+          // curl -iv -X GET "https://circleci.com/api/v2/pipeline?${QUERY_PARAMETERS}" -H 'Content-Type: application/json' -H 'Accept: application/json' -H "Circle-Token: ${CCI_TOKEN}" | tail -n 1 | jq .
+          let queryParams: URLSearchParams = new URLSearchParams([
+            ['org-slug', `gh/${github_org}`]
+          ]);
+          if (mine && page_token) {
+            queryParams = new URLSearchParams([
+              ['org-slug', `gh/${github_org}`],
+              ['mine', `${mine}`],
+              ['page-token', `${page_token}`]
+            ]);
+          } else if (page_token) {
+            queryParams = new URLSearchParams([
+              ['org-slug', `gh/${github_org}`],
+              ['page-token', `${page_token}`]
+            ]);
+          } else if (mine){
+            queryParams = new URLSearchParams([
+              ['org-slug', `gh/${github_org}`],
+              ['mine', `${mine}`]
+            ]);
+          } else {
+            queryParams = new URLSearchParams([
+              ['org-slug', `gh/${github_org}`]
+            ]);
+          }
+          let config = {
+            headers: {
+              "Circle-Token": this.secrets.circleci.auth.token,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            },
+            params: queryParams
+          };
+
+          console.info("curl -X GET -H 'Content-Type: application/json'" + " -H 'Accept: application/json'" + " -H 'Circle-Token: " + `${this.secrets.circleci.auth.token}` + `' https://circleci.com/api/v2/pipeline?${queryParams.toString()}`);
+
+          /// axios.post( 'https://circleci.com/api/v2/me', jsonPayloadExample, config ).then(....)
+          axios.get( `https://circleci.com/api/v2/pipeline`, config)
+          .then( ( response ) => {
+              // let emitted = response.data;
+              let emitted: any = {
+                circleci_response_data: response.data
+              };
+              emitted.org_slug = `gh/${github_org}`; // won't hurt, will it ?
+              emitted.cci_http_response_status = {
+                status_code: response.status,
+                status_text: response.statusText
+              }; // won't hurt, will it ?
+              observer.next( emitted );
+              observer.complete();
+          } )
+          .catch( ( error ) => {
+              console.log("Circle CI HTTP Error JSON Response is : ");
+              /// console.log(JSON.stringify(error.response));
+              console.log(error.response);
+              let emittedError = {
+                axios_error: error,
+                cci_http_response_status : {
+                  status_code: error.response.status,
+                  status_text: error.response.statusText
+                }
+              }; // won't hurt, will it ?
+              observer.error( emittedError );
+          } );
+
+      } );
+      return observableRequest;
+
+    }
+
+    /**
+     * List all pipelines for all github repos
+     * getPipelinesOfAProject(receivedJSON.github_org, receivedJSON.git_repo.name, receivedJSON.git_repo.branch, receivedJSON.page_token)
+     **/
+    getPipelinesOfAProject(github_org: string, repo_name: string, branch?: string, page_token?: string): any/*Observable<any> or Observable<AxiosResponse<any>>*/ {
+
+      let observableRequest: any = rxjs.Observable.create( ( observer: any ) => {
+
+          // curl -X GET
+          // export QUERY_PARAMETERS="org-slug=gh/${ORG_NAME}&mine=${MINE_ONLY}&page-token=${PAGE_TOKEN}"
+          // curl -iv -X GET "https://circleci.com/api/v2/pipeline?${QUERY_PARAMETERS}" -H 'Content-Type: application/json' -H 'Accept: application/json' -H "Circle-Token: ${CCI_TOKEN}" | tail -n 1 | jq .
+          let queryParams: URLSearchParams = new URLSearchParams([]);
+          if (branch && page_token) {
+            if (branch === "") { // then branch was set to an empty string by router, because it did not receive any branch in JSON payload request
+              queryParams = new URLSearchParams([
+                ['page-token', `${page_token}`]
+              ]);
+            } else {
+              queryParams = new URLSearchParams([
+                ['branch', `${branch}`],
+                ['page-token', `${page_token}`]
+              ]);
+            }
+          } else if (page_token) {
+            queryParams = new URLSearchParams([
+              ['page-token', `${page_token}`]
+            ]);
+          } else if (branch){
+            queryParams = new URLSearchParams([
+              ['branch', `${branch}`]
+            ]);
+          } else {
+            queryParams = new URLSearchParams([]);
+          }
+          let config = {
+            headers: {
+              "Circle-Token": this.secrets.circleci.auth.token,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            },
+            params: queryParams
+          };
+
+          console.info("curl -X GET -H 'Content-Type: application/json'" + " -H 'Accept: application/json'" + " -H 'Circle-Token: " + `${this.secrets.circleci.auth.token}` + `' https://circleci.com/api/v2/pipeline?${queryParams.toString()}`);
+
+          /// axios.post( 'https://circleci.com/api/v2/me', jsonPayloadExample, config ).then(....)
+          axios.get( `https://circleci.com/api/v2/project/gh/${github_org}/${repo_name}/pipeline`, config)
+          .then( ( response ) => {
+              // let emitted = response.data;
+              let emitted: any = {
+                circleci_response_data: response.data
+              };
+              emitted.project_slug = `gh/${github_org}/${repo_name}`; // won't hurt, will it ?
+              if (branch){
+                emitted.branch = `${branch}`; // won't hurt, will it ?
+              }
+              emitted.cci_http_response_status = {
+                status_code: response.status,
+                status_text: response.statusText
+              }; // won't hurt, will it ?
+              observer.next( emitted );
+              observer.complete();
+          } )
+          .catch( ( error ) => {
+              console.log("Circle CI HTTP Error JSON Response is : ");
+              /// console.log(JSON.stringify(error.response));
+              console.log(error.response);
+              let emittedError = {
+                axios_error: error,
+                cci_http_response_status : {
+                  status_code: error.response.status,
+                  status_text: error.response.statusText
+                }
+              }; // won't hurt, will it ?
+              observer.error( emittedError );
+          } );
+
+      } );
+      return observableRequest;
+
     }
     /**
      *
