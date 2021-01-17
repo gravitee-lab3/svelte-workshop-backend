@@ -3,7 +3,7 @@ import passport from 'passport';
 import OAuth2Strategy from 'passport-oauth2'
 /// import * as passport_oauth2 from 'passport-oauth2' // passport_oauth2.OAuth2Strategy
 import * as passport_github2 from 'passport-github2';
-import { GithubApiClient } from '../../lib/github/api'
+import { GithubApiClient } from './api'
 
 
 class AuthenticatedUserHandler {

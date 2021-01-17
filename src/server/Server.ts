@@ -1,13 +1,13 @@
 // import * as express from 'express'
 import express, { Request, Response } from 'express';
 import { Application } from 'express';
-import githubAuth from './auth/github/';
+import githubAuth from './lib/auth/github/';
 // import * as express_session from 'express-session';
 import Session from 'express-session';
 import * as body_parser from 'body-parser';
 import * as method_override from 'method-override';
 import partials from 'express-partials';
-import PokusMiddleware from './permissions/pokus/github';
+import PokusMiddleware from './lib/auth/permissions/pokus/github';
 
 
 class GhallagherServer {
