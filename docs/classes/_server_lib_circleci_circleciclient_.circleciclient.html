@@ -87,6 +87,9 @@
 									<a href="_server_lib_circleci_circleciclient_.circleciclient.html#getgithubreponamefrom" class="tsd-kind-icon">get<wbr>Github<wbr>Repo<wbr>Name<wbr>From</a>
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class">
+									<a href="_server_lib_circleci_circleciclient_.circleciclient.html#getpipelines" class="tsd-kind-icon">get<wbr>Pipelines</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class">
 									<a href="_server_lib_circleci_circleciclient_.circleciclient.html#inspectpipelineexecstate" class="tsd-kind-icon">inspect<wbr>Pipeline<wbr>Exec<wbr>State</a>
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -150,6 +153,14 @@
 						</li>                        <li class=" tsd-kind-module">
 						<a href="../modules/_server_routers_circlecirouter_.html">&quot;server/routers/<wbr>CircleCIRouter&quot;</a>
 						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_routers_circleci_getpipelinesjsonpayload_.html">&quot;server/routers/circleci/<wbr>Get<wbr>PipelinesJSon<wbr>Payload&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_routers_circleci_getpipelinesofaprojectjsonpayload_.html">&quot;server/routers/circleci/<wbr>Get<wbr>Pipelines<wbr>OfAProjectJSon<wbr>Payload&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_routers_circleci_getpipelinesrouter_.html">&quot;server/routers/circleci/<wbr>Get<wbr>Pipelines<wbr>Router&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="../modules/_server_routers_circleci_triggerpipelinejsonpayload_.html">&quot;server/routers/circleci/<wbr>Trigger<wbr>PipelineJSon<wbr>Payload&quot;</a>
+						</li>                        <li class=" tsd-kind-module">
 						<a href="../modules/_server_routers_circleci_triggerpipelinerouter_.html">&quot;server/routers/circleci/<wbr>Trigger<wbr>Pipeline<wbr>Router&quot;</a>
 						</li>                        <li class=" tsd-kind-module">
 						<a href="../modules/_server_routers_circleci_whoamiirouter_.html">&quot;server/routers/circleci/<wbr>Who<wbr>AmiIRouter&quot;</a>
@@ -202,6 +213,13 @@
 								<ul>
 									<li class="tsd-kind-method tsd-parent-kind-class">
 										<a href="_server_lib_circleci_circleciclient_.circleciclient.html#getgithubreponamefrom" class="tsd-kind-icon">get<wbr>Github<wbr>Repo<wbr>Name<wbr>From</a>
+									</li>
+								</ul>
+							</div>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-method tsd-parent-kind-class">
+										<a href="_server_lib_circleci_circleciclient_.circleciclient.html#getpipelines" class="tsd-kind-icon">get<wbr>Pipelines</a>
 									</li>
 								</ul>
 							</div>
@@ -263,7 +281,7 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:62</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L62">src/server/lib/circleci/CircleCIClient.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -276,7 +294,7 @@
 					<div class="tsd-signature tsd-kind-icon">secrets<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_server_lib_circleci_circlecisecrets_.circlecisecrets.html" class="tsd-signature-type">CircleCISecrets</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:62</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L62">src/server/lib/circleci/CircleCIClient.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -306,7 +324,38 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:431</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L512">src/server/lib/circleci/CircleCIClient.ts:512</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-descriptions">
+					<a name="getpipelines" class="tsd-anchor"></a>
+					<h3>get<wbr>Pipelines</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Pipelines<span class="tsd-signature-symbol">(</span>github_org<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, mine<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span>, page_token<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<div class="tsd-comment">
+						<div class="lead">
+							<p>List allpieplines for all github repos</p>
+						</div>
+					</div>
+					<h4 class="tsd-parameters-title">Parameters</h4>
+					<ul class="tsd-parameters">
+						<li>
+							<span class="name">github_org</span>: <span class="tsd-signature-type">string</span>
+						</li>
+						<li>
+							<span class="name">mine</span>: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span> <span class="tsd-flag ts-flagOptional">Optional</span>
+						</li>
+						<li>
+							<span class="name">page_token</span>: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span> <span class="tsd-flag ts-flagOptional">Optional</span>
+						</li>
+					</ul>
+					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span>    </h4>
+					</ul>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L191">src/server/lib/circleci/CircleCIClient.ts:191</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -329,7 +378,7 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:309</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L390">src/server/lib/circleci/CircleCIClient.ts:390</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -387,7 +436,7 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:265</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L346">src/server/lib/circleci/CircleCIClient.ts:346</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -434,7 +483,7 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:380</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L461">src/server/lib/circleci/CircleCIClient.ts:461</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -448,7 +497,7 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:66</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L66">src/server/lib/circleci/CircleCIClient.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -483,7 +532,7 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:139</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L139">src/server/lib/circleci/CircleCIClient.ts:139</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -502,7 +551,7 @@
 					</ul>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/server/lib/circleci/CircleCIClient.ts:499</li>
+							<li>Defined in <a href="https://github.com/gravitee-lab3/svelte-workshop-backend/blob/c64d3d1/src/server/lib/circleci/CircleCIClient.ts#L580">src/server/lib/circleci/CircleCIClient.ts:580</a></li>
 						</ul>
 					</aside>
 				</section>

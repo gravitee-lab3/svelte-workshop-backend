@@ -1,5 +1,7 @@
 import { Router } from 'express';
+/// import * as bodyParser from 'body-parser';
 import * as CircleCI from '../../lib/circleci/';
+import { TriggerPipelineJSonPayload } from './TriggerPipelineJSonPayload';
 // import { circleCIClientService } from '../../lib/circleci/';
 // import circleCIClientService  from '../../lib/circleci/CircleCIClient';
 const triggerPipelineRouter = Router();
@@ -8,41 +10,67 @@ const path = '/trigger-pipeline';
 triggerPipelineRouter.post(`${path}`, (request, response) => {
   /* let JSONdataForResponse = {
     message : "OK", // user property is there just because it is required by the [views/layout.ejs] template
-    circleCiJsonResponse: {}
+    emittedJSONwithCciResponse: {}
   }
 
   response.json(JSONdataForResponse);*/
+
+  // Ok,with body_parser middleware I get in request.body the desired JSON contianing all the data I want :
+  /*
+  export JSON_PAYLOAD="{
+      \"github_org\": \"${ORG_NAME}\",
+      \"git_repo\": {
+        \"name\": \"${REPO_NAME}\",
+        \"branch\": \"${BRANCH}\"
+      },
+      \"parameters\":
+
+      {
+          \"gio_action\": \"release\"
+      }
+
+  }"
+  */
+  console.info( '[{Ghallagher[/trigger-pipeline] Router}] - received Circle CI API Response [data] => ', request.body);
+  let receivedJSON: TriggerPipelineJSonPayload = request.body;
+  console.info( '[{Ghallagher[/trigger-pipeline] Router}] - infered {TriggerPipelineJSonPayload} => ', receivedJSON);
+
   let git_repo = {
-    name: "svelte-workshop",
-    branch: `develop`
+    name: `${receivedJSON.git_repo.name}`,
+    branch: `${receivedJSON.git_repo.branch}`
   }
-  let pipelineConfig = {
+  /*let pipelineConfig = {
     parameters: {
-     gio_action: `release`, // should be releated to cicd_stage...? mvn_release ?
+     gio_action: `${receivedJSON.parameters.gio_action}`,
      dry_run: true,
      secrethub_org: process.env.SECRETHUB_ORG,
      secrethub_repo: process.env.SECRETHUB_REPO,
      maven_profile_id: process.env.MAVEN_PROFILE_ID
     },
-    branch: `${git_repo.branch}`
+    branch: `${receivedJSON.git_repo.branch}`
+  } */
+  let pipelineConfig = {
+    parameters: receivedJSON.parameters,
+    branch: `${receivedJSON.git_repo.branch}`
   }
-  let triggerPipelineSubscription = CircleCI.circleCIClientService.triggerCciPipeline(process.env.GH_ORG!, `${git_repo.name}`, `${git_repo.branch}`, pipelineConfig).subscribe({
-  next: (circleCiJsonResponse: any) : void => {
-    console.info( '[{Ghallagher[/trigger-pipeline] Router}] - received Circle CI API Response [data] => ', circleCiJsonResponse  /* circleCiJsonResponse.data // when retryWhen is used*/ )
+
+  let triggerPipelineSubscription = CircleCI.circleCIClientService.triggerCciPipeline(receivedJSON.github_org, `${git_repo.name}`, `${git_repo.branch}`, pipelineConfig).subscribe({
+  next: (emittedJSONwithCciResponse: any) : void => {
+    console.info( '[{Ghallagher[/trigger-pipeline] Router}] - received Circle CI API Response [data] => ', emittedJSONwithCciResponse  /* emittedJSONwithCciResponse.data // when retryWhen is used*/ )
     let entry: any = {};
     entry.pipeline = {
-      pipeline_exec_number: `${circleCiJsonResponse.number}`,
-      id : `${circleCiJsonResponse.id}`,
-      created_at: `${circleCiJsonResponse.created_at}`,
-      exec_state: `${circleCiJsonResponse.state}`,
-      project_slug: `${circleCiJsonResponse.project_slug}`
+      pipeline_exec_number: `${emittedJSONwithCciResponse.number}`,
+      id : `${emittedJSONwithCciResponse.id}`,
+      created_at: `${emittedJSONwithCciResponse.created_at}`,
+      exec_state: `${emittedJSONwithCciResponse.state}`,
+      project_slug: `${emittedJSONwithCciResponse.project_slug}`
     }
     let JSONdataForResponse = {
       message : "[{Ghallagher[/trigger-pipeline] Router}] - received Circle CI API Response", // user property is there just because it is required by the [views/layout.ejs] template
-      circleCiJsonResponse: circleCiJsonResponse
+      emittedJSONwithCciResponse: emittedJSONwithCciResponse
     }
     response.setHeader('Content-Type', 'application/json');
-    response.statusCode = 204;
+    response.statusCode = emittedJSONwithCciResponse.cci_http_response_status.status_code;
     response.json(JSONdataForResponse); // here the response is sent back from Express [whoamIRouter] to browser client app
   },
   complete: (data: any) => {
