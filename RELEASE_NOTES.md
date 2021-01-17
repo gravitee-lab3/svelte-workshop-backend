@@ -70,9 +70,17 @@ npm run server
 
 * Note that he preceding script, set the value of the `SECRET_FILE_PATH`, in the `.env` file, to the path of the file containing the secret needed by Ghallagher : Your Circle CI Personal API Token.
 
+#### Test : Circle CI Who am I
+
+* Invoke the Ghallagher `[/backend/circleci/whoami]` Endpoint, without authentication, like this :
+
+```bash
+curl -iv http://localhost:5000/backend/circleci/whoami | tail -n 1 | jq .
+```
+
 #### Test : Trigger Pipelines
 
-* And invoke the Ghallagher `[/backend/circleci/trigger-pipeline]` Endpoint, without authentication, totriggera pipeline, like this :
+* Invoke the Ghallagher `[/backend/circleci/trigger-pipeline]` Endpoint, without authentication, totriggera pipeline, like this :
 
 ```bash
 export ORG_NAME="gravitee-lab"
@@ -98,7 +106,7 @@ curl -iv -X POST -d "${JSON_PAYLOAD}" http://localhost:5000/backend/circleci/tri
 
 #### Test : List Pipelines of all projects
 
-* And invoke the Ghallagher `[/backend/circleci/get-pipelines]` Endpoint, without authentication, totriggera pipeline, like this :
+* Invoke the Ghallagher `[/backend/circleci/get-pipelines]` Endpoint, without authentication, totriggera pipeline, like this :
 
 ```bash
 export ORG_NAME="gravitee-lab"
@@ -146,7 +154,7 @@ curl -iv -X GET "https://circleci.com/api/v2/pipeline?${QUERY_PARAMETERS}" -H 'C
 
 (Still TODO)
 
-* And invoke the Ghallagher `[/backend/circleci/get-pipelines-of]` Endpoint, without authentication, to gat all pipeline executions of a given project (of a given github repo) , like this :
+* Invoke the Ghallagher `[/backend/circleci/get-pipelines-of]` Endpoint, without authentication, to gat all pipeline executions of a given project (of a given github repo) , like this :
 
 ```bash
 export ORG_NAME="gravitee-lab"
